@@ -8,3 +8,11 @@ while let line = readLine() {
 }
 
 print(zip(leftList.sorted(), rightList.sorted()).map { abs($0 - $1) }.reduce(0, +))
+
+var scoreIncreases: [Int: Int] = [:]
+
+for i in rightList {
+    scoreIncreases[i] = scoreIncreases[i, default: 0] + 1
+}
+
+print(leftList.reduce(0) { $0 + $1 * scoreIncreases[$1, default: 0] })
